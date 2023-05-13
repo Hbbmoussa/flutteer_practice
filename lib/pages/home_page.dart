@@ -1,4 +1,7 @@
+import 'package:flutteer_practice/pages/my_square.dart';
 import 'package:flutter/material.dart';
+
+import 'my_circle.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -10,41 +13,33 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+  final List _post = ['post 1', 'post 2', 'post 3', 'post 4'];
+  final List _histories = ['history 1', 'history 2', 'history 3', 'history 4'];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        body: Column(children: [
+      Expanded(
+          flex: 1,
+          child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: _histories.length,
+              itemBuilder: (context, index) {
+                return MyCircle(
+                  history: _histories[index],
+                );
+              })),
+      Expanded(
+        flex: 3,
+        child: ListView.builder(
+            itemCount: _post.length,
+            itemBuilder: (context, index) {
+              return MySquaree(
+                child: _post[index],
+              );
+            }),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
+    ]));
   }
 }
