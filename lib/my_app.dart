@@ -1,3 +1,5 @@
+import 'package:flutteer_practice/app_bar.dart';
+import 'package:flutteer_practice/grid_view.dart';
 import 'package:flutteer_practice/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +12,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Home Page'),
+      home: const MyAppBar(),
     );
   }
 }
